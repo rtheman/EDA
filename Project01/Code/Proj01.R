@@ -1,12 +1,11 @@
 # Project 01
 # <URL: https://class.coursera.org/exdata-008/human_grading/view/courses/972597/assessments/3/submissions>
-# Last modified on Thurs, 06Nov2014 by Rich Leung
+# Last modified on Sat, 08Nov2014 by Rich Leung
 
 library(ggplot2)
 
 # Initializing working directory
-WD = "/Users/richleung/Dropbox/Projects/Coursera/Exploratory Data Analysis/Project01/Input"
-# WD = "C:/Users/rich.leung.000/Documents/My Projects/Coursera/Exploratory Data Analysis/Project01/Proj01_RLeung/Code"
+WD = "/Users/richleung/Dropbox/Projects/Coursera/EDA_local/Project01/Input"
 setwd(WD)
 
 
@@ -14,7 +13,6 @@ setwd(WD)
 
 
 # Import raw data file
-# raw_data <- read.table("C:/Users/rich.leung.000/Documents/My Projects/Coursera/Exploratory Data Analysis/Project01/Proj01_RLeung/Data/household_power_consumption.txt", sep=";", header=TRUE)
 raw_data <- read.table("household_power_consumption.txt", sep=";", header=TRUE)
 
 
@@ -32,14 +30,6 @@ raw_data$Day <- weekdays(raw_data$DateTime_fmt)
 
 # Organize columns
 raw_data <- raw_data[, c(1,2,10,11,12,3,4,5,6,7,8,9)]
-
-# 
-# # Transform to Date type [as.Date]
-# raw_data$Date <- as.Date(raw_data$Date, "%d/%m/%Y")
-# # Transform to Time type [strptime]
-# raw_data$Time <- strptime(raw_data$Time, "%H:%M:%S")
-# # Combine Date and Time as a Date-Time object
-# raw_data$DateTime <- as.POSIXct(paste(raw_data$Date, raw_data$Time), format="%d/%m/%Y %H:%M:%S")
 
 
 
@@ -86,19 +76,20 @@ lines(Training_Set$DateTime_fmt, Training_Set$Sub_metering_3, col = "blue")
 legend("topright", pch = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
 # -- [Plot 4] Energy panel illustration
-par(mfrow = c(1,3), mar = c(4,4,2,1), oma = c(0,0,2,0))
-with(Training_Set, {
-  plot(Training_Set$DateTime_fmt, Training_Set$Global_active_power, type = "l", main="", xlab="", ylab="Global Active Power (kilowatts)")
-  
-  plot(Training_Set$DateTime_fmt, Training_Set$Voltage, type = "l", main = "", xlab="datetime", ylab = "Voltage")
-  
-  plot(Training_Set$DateTime_fmt, Training_Set$Sub_metering_1, type = "l", main="", xlab="", ylab="Energy sub metering", col="black")
-  lines(Training_Set$DateTime_fmt, Training_Set$Sub_metering_2, col = "red")
-  lines(Training_Set$DateTime_fmt, Training_Set$Sub_metering_3, col = "blue")
-  legend("topright", pch = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-  
-  plot(Training_Set$DateTime_fmt, Training_Set$Global_reactive_power, type = "l", main="", xlab="", ylab="Global_Reactive_power")
-})
+par(mfrow = c(2,2))
+# plot 1 (top-left)
+plot(Training_Set$DateTime_fmt, Training_Set$Global_active_power, type = "l", main="", xlab="", ylab="Global Active Power (kilowatts)")
+# plot 2 (top-right)
+plot(Training_Set$DateTime_fmt, Training_Set$Voltage, type = "l", main = "", xlab="datetime", ylab = "Voltage")
+# plot 3 (bottom-left)
+plot(Training_Set$DateTime_fmt, Training_Set$Sub_metering_1, type = "l", main="", xlab="", ylab="Energy sub metering", col="black")
+lines(Training_Set$DateTime_fmt, Training_Set$Sub_metering_2, col = "red")
+lines(Training_Set$DateTime_fmt, Training_Set$Sub_metering_3, col = "blue")
+legend("topright", pch = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+# plot 4 (bottom-right)
+plot(Training_Set$DateTime_fmt, Training_Set$Global_reactive_power, type = "l", main="", xlab="datetime", ylab="Global_Reactive_power")
+
+
 
 
 
