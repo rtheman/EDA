@@ -17,7 +17,7 @@ Project 1 - Loading Data, Analyzing Data (dplyr), Making Plots (base plot)
 Project 2 - Loading and Analyzing more data (dplyr; Joins are interesting w/ dplyr), Making more plots (ggplot)
 
  - [Code](https://github.com/rtheman/EDA/tree/master/Project02/Code)
- - [Output](https://github.com/rtheman/EDA/tree/master/Project02/Output)
+ - [Output](https://github.com/rtheman/EDA/tree/master/Project02/Output) (plots)
 
 ----------
 
